@@ -1,6 +1,7 @@
 package br.com.petz.cliente_pet.cliente.application.api;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -27,5 +28,6 @@ public class ClienteRequest {
 	private String cpf;
 	@NotNull
 	private Boolean aceitaTermos;
+	
 
 }
