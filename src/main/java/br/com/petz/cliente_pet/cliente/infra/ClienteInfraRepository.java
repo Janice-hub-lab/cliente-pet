@@ -30,4 +30,10 @@ public class ClienteInfraRepository implements ClienteRepository {
 		return null;
 	}
 
+	@Override
+	public List<Cliente> buscaTodosCliente() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
