@@ -1,15 +1,21 @@
-package dev.wakandaacademy.produdoro.handler;
+package br.com.petz.cliente_pet.handler;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.apache.commons.logging.Log;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import lombok.experimental.FieldNameConstants;
 import lombok.extern.log4j.Log4j2;
 
 @RestControllerAdvice
 @Log4j2
-
 public class RestResponseEntityExceptionHandler {
 	@ExceptionHandler(APIException.class)
 	public ResponseEntity<ErrorApiResponse>handlerGenericException(APIException ex) {
@@ -17,16 +23,24 @@ public class RestResponseEntityExceptionHandler {
 	
 	}
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ErrorApiResponse>handlerGenericException(Exception ex) {
-		
-		Log.error("Exception: ",ex);
-		return ResponseEntity
-				.status(HttpStatus.INTERNAL_SERVER_ERROR)
-				.body(ErrorApiResponse
-						.description("INTERNAL_SERVER_ERROR!")
-						.message("POR FAVOR INFORME AO ADMINISTRADOR DO SISTEMA")
-						.builder());
-		
+	public ResponseEntity<ErrorApiResponse> handlerGenericException(Exception ex) {
+		log.error("Exception: ", ex);
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(ErrorApiResponse.builder().description("INTERNAL_SERVER_ERROR!")
+						.message("POR FAVOR INFORME AO ADMINISTRADOR DO SISTEMA").build());					
+	}
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+		Map<String,String> errors = new HashMap<>();
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+				String FieldName = ((FieldError) error).getField();
+				String errorMessage = error.getDefaultMessage();
+				errors.put(FieldName, errorMessage);
+	});
+				return errors;
+	
+	
 	}
 
 }

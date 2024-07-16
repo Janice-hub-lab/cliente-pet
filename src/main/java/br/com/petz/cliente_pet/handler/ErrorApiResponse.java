@@ -1,4 +1,4 @@
-package dev.wakandaacademy.produdoro.handler;
+package br.com.petz.cliente_pet.handler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -16,17 +16,5 @@ public class ErrorApiResponse {
 	
 	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private String description;
-
-	public static String builder() {
-		
-		return null;
-	}
-
-	public static String builder() {
-		
-		return null;
-	}
-
 	
-
 }

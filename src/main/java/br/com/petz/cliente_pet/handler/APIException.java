@@ -1,8 +1,7 @@
-package dev.wakandaacademy.produdoro.handler;
+package br.com.petz.cliente_pet.handler;
 
 import java.util.Optional;
 
-import org.apache.commons.logging.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +30,7 @@ public class APIException extends RuntimeException {
 		return new APIException(statusException, message, null);
 	}	
 	public static APIException build(HttpStatus statusException, String message, Exception e) {
-		Log.error("Exception: ", e);
+		log.error("Exception: ", e);
 		return new APIException(statusException, message, e);
 		
 		
