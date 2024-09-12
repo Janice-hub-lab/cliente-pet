@@ -41,7 +41,6 @@ public class Pet {
 	private String rga;
 	private Integer peso;
 	
-	
 	private LocalDateTime dataHoraCadastro;
 	private LocalDateTime dataHoraDaUltimaAlteracao;
 
