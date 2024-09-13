@@ -12,6 +12,7 @@ import br.com.petz.cliente_pet.pet.application.api.petClienteListResponse;
 import br.com.petz.cliente_pet.pet.domain.Pet;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
 
 @Service
@@ -34,8 +35,9 @@ public class PetApplicationService implements PetService {
 	public List<petClienteListResponse> buscaPetsDoClienteComId(UUID idCliente) {
 		log.info("[start] PetApplicationService - buscaPetsDoClienteComId");
 		clienteService.buscaClienteAtravesId(idCliente);
-		log.info("[finish] PetApplicationService - buscaPetsDoClienteComId");
-		return null;
+		List<Pet> petsDoCliente = petRepository.buscaPetsDoClienteComId(idCliente);
+		log.info("[finish] PetApplicationService - buscaPetsDoClienteComId ");
+		return petClienteListResponse.converte(petsDoCliente);
 	}
 
 }
