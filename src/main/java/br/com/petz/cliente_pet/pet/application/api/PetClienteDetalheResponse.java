@@ -1,21 +1,17 @@
 package br.com.petz.cliente_pet.pet.application.api;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
+import br.com.petz.cliente_pet.pet.domain.Pet;
 import br.com.petz.cliente_pet.pet.domain.Porte;
 import br.com.petz.cliente_pet.pet.domain.SexoPet;
 import br.com.petz.cliente_pet.pet.domain.TipoPet;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
 @Value
 public class PetClienteDetalheResponse {
+	
 	private UUID idPet;
 	private UUID idClienteTutor;
 	private String nomePet;	
@@ -28,5 +24,20 @@ public class PetClienteDetalheResponse {
 	private LocalDate dataNascimento;
 	private String rga;
 	private Integer peso;
+	
+	public PetClienteDetalheResponse(Pet pet) {
+		this.idPet = pet.getIdPet();
+		this.idClienteTutor = pet.getIdClienteTutor();
+		this.nomePet = pet.getNomePet();
+		this.porte = pet.getPorte();
+		this.tipo = pet.getTipo();
+		this.microchip = pet.getMicrochip();
+		this.raca = pet.getRaca();
+		this.sexo = pet.getSexo();
+		this.pelagemCor = pet.getPelagemCor();
+		this.dataNascimento = pet.getDataNascimento();
+		this.rga = pet.getRga();
+		this.peso = pet.getPeso();
+	}
 
 }

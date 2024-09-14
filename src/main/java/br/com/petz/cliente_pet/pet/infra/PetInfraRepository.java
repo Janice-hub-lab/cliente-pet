@@ -3,8 +3,10 @@ package br.com.petz.cliente_pet.pet.infra;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import br.com.petz.cliente_pet.handler.APIException;
 import br.com.petz.cliente_pet.pet.application.service.PetRepository;
 import br.com.petz.cliente_pet.pet.domain.Pet;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,15 @@ public class PetInfraRepository implements PetRepository {
 		var pets = petSpringDataJARepository.findByIdClienteTutor(idCliente);
 		log.info("[finish] PetInfraRepository - buscaPetsDoClienteComId");
 		return pets;
+	}
+
+	@Override
+	public Pet buscaPetPeloId(UUID idPet) {
+		log.info("[start] PetInfraRepository - buscaPetPeloId");
+		var pet = petSpringDataJARepository.findById(idPet)
+				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Pet não encontrado para o id = " + idPet));
+		log.info("[finish] PetInfraRepository - buscaPetPeloId");
+		return pet;
 	}
 
 }
