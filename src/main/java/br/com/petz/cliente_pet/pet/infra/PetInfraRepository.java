@@ -16,12 +16,12 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequiredArgsConstructor
 public class PetInfraRepository implements PetRepository {
-	private final PetSpringDataJPARepository petSpringDataJARepository;
+	private final PetSpringDataJPARepository petSpringDataJPARepository;
 
 	@Override
 	public Pet salvaPet(Pet pet) {
 		log.info("[start] PetInfraRepository - salvaPet");
-		petSpringDataJARepository.save(pet);
+		petSpringDataJPARepository.save(pet);
 		log.info("[finish] PetInfraRepository - salvaPet");
 		return pet;
 	}
@@ -29,7 +29,7 @@ public class PetInfraRepository implements PetRepository {
 	@Override
 	public List<Pet> buscaPetsDoClienteComId(UUID idCliente) {
 		log.info("[start] PetInfraRepository - buscaPetsDoClienteComId");
-		var pets = petSpringDataJARepository.findByIdClienteTutor(idCliente);
+		var pets = petSpringDataJPARepository.findByIdClienteTutor(idCliente);
 		log.info("[finish] PetInfraRepository - buscaPetsDoClienteComId");
 		return pets;
 	}
@@ -37,8 +37,8 @@ public class PetInfraRepository implements PetRepository {
 	@Override
 	public Pet buscaPetPeloId(UUID idPet) {
 		log.info("[start] PetInfraRepository - buscaPetPeloId");
-		var pet = petSpringDataJARepository.findById(idPet)
-				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Pet não encontrado para o id = " + idPet));
+		var pet = petSpringDataJPARepository.findById(idPet)				
+				.orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Pet não encontrado para o id = " + idPet));			
 		log.info("[finish] PetInfraRepository - buscaPetPeloId");
 		return pet;
 	}

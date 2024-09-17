@@ -28,21 +28,29 @@ public class PetController implements PetAPI {
 	}
 
 	@Override
-	public List<petClienteListResponse> getPetDoCliente(UUID idCliente) {
-		log.info("[inicia] PetController - getPetDoCliente");
+	public List<petClienteListResponse> getPetsDoClienteComId(UUID idCliente) {
+		log.info("[inicia] PetController - getPetsDoClienteComId");
 		log.info("[idCliente] {}", idCliente );
 		List<petClienteListResponse> petsDoCliente = petService.buscaPetsDoClienteComId(idCliente);
-		log.info("[finish] PetController - getPetDoCliente");
+		log.info("[finish] PetController - getPetsDoClienteComId");
 		return petsDoCliente;
 	}
 
 	@Override
-	public PetClienteDetalheResponse getPetDoClienteAtravesId(UUID idCliente, UUID idPet) {
-		log.info("[inicia] PetController - getPetDoClienteAtravesId");
+	public PetClienteDetalheResponse getPetDoClienteComId(UUID idCliente, UUID idPet) {
+		log.info("[inicia] PetController - getPetDoClienteComId");
 		log.info("[idCliente] {} - [idPet] {}", idCliente, idPet);
 		PetClienteDetalheResponse pet = petService.buscaPetDoClienteComId(idCliente, idPet);
-		log.info("[finish] PetController - getPetDoClienteAtravesId");
+		log.info("[finish] PetController - getPetDoClienteComId");
 		return pet;
 	}
+
+	@Override
+	public List<petClienteListResponse> getPetDoCliente(UUID idCliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

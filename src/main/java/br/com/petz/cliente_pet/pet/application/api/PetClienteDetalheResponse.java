@@ -13,7 +13,6 @@ import lombok.Value;
 public class PetClienteDetalheResponse {
 	
 	private UUID idPet;
-	private UUID idClienteTutor;
 	private String nomePet;	
 	private Porte porte;	
 	private TipoPet tipo;
@@ -27,7 +26,6 @@ public class PetClienteDetalheResponse {
 	
 	public PetClienteDetalheResponse(Pet pet) {
 		this.idPet = pet.getIdPet();
-		this.idClienteTutor = pet.getIdClienteTutor();
 		this.nomePet = pet.getNomePet();
 		this.porte = pet.getPorte();
 		this.tipo = pet.getTipo();
