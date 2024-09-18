@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
 @Value
-public class PetRequest {
+public class PetAlteracaoRequest {
 	@NotBlank
 	private String nomePet;	
 	private Porte porte;

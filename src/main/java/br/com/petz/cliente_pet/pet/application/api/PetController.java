@@ -15,13 +15,12 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class PetController implements PetAPI {
 
-	
 	private final PetService petService;
 
 	@Override
 	public PetResponse postPet(UUID idCliente, @Valid PetRequest petRequest) {
 		log.info("[inicia] PetController - postPet");
-		log.info("[idCliente] {}", idCliente );
+		log.info("[idCliente] {}", idCliente);
 		PetResponse pet = petService.criaPet(idCliente, petRequest);
 		log.info("[finaliza] PetController - postPet");
 		return pet;
@@ -30,7 +29,7 @@ public class PetController implements PetAPI {
 	@Override
 	public List<petClienteListResponse> getPetsDoClienteComId(UUID idCliente, UUID idPet) {
 		log.info("[inicia] PetController - getPetsDoClienteComId");
-		log.info("[idCliente] {}", idCliente );
+		log.info("[idCliente] {}", idCliente);
 		List<petClienteListResponse> petsDoCliente = petService.buscaPetsDoClienteComId(idCliente);
 		log.info("[finish] PetController - getPetsDoClienteComId");
 		return petsDoCliente;
@@ -53,6 +52,12 @@ public class PetController implements PetAPI {
 		log.info("[finish] PetController - deletePetDoClienteComId");
 	}
 
-
+	@Override
+	public PetResponse patchPet(UUID idCliente, UUID idPet, @Valid PetAlteracaoRequest petAlteracaoRequest) {
+		log.info("[inicia] PetController - patchPet");
+		log.info("[idCliente] {} - [idPet] {}", idCliente, idPet);
+		log.info("[finish] PetController - patchPet");
+		return null;
+	}
 
 }
