@@ -28,7 +28,7 @@ public class PetController implements PetAPI {
 	}
 
 	@Override
-	public List<petClienteListResponse> getPetsDoClienteComId(UUID idCliente) {
+	public List<petClienteListResponse> getPetsDoClienteComId(UUID idCliente, UUID idPet) {
 		log.info("[inicia] PetController - getPetsDoClienteComId");
 		log.info("[idCliente] {}", idCliente );
 		List<petClienteListResponse> petsDoCliente = petService.buscaPetsDoClienteComId(idCliente);
@@ -46,11 +46,13 @@ public class PetController implements PetAPI {
 	}
 
 	@Override
-	public List<petClienteListResponse> getPetDoCliente(UUID idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+	public void deletePetDoClienteComId(UUID idCliente, UUID idPet) {
+		log.info("[inicia] PetController - deletePetDoClienteComId");
+		log.info("[idCliente] {} - [idPet] {}", idCliente, idPet);
+		petService.deletaPetDoClienteComId(idCliente, idPet);
+		log.info("[finish] PetController - deletePetDoClienteComId");
 	}
 
-	
+
 
 }

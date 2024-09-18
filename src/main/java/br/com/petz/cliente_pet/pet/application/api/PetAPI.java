@@ -25,11 +25,16 @@ public interface PetAPI {
 
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	List<petClienteListResponse> getPetDoCliente(@PathVariable UUID idCliente);
+	List<petClienteListResponse> getPetsDoClienteComId(@PathVariable UUID idCliente, @PathVariable UUID idPet);	
+	
+	@GetMapping(value = "{idPet}")
+	@ResponseStatus(code = HttpStatus.OK)
+	PetClienteDetalheResponse getPetDoClienteComId(@PathVariable UUID idCliente, @PathVariable UUID idPet);
 
-	List<petClienteListResponse> getPetsDoClienteComId(UUID idCliente);
+	@DeleteMapping(value = "{idPet}")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	void deletePetDoClienteComId(@PathVariable UUID idCliente, @PathVariable UUID idPet);
 
-	PetClienteDetalheResponse getPetDoClienteComId(UUID idCliente, UUID idPet);
 
 	
 }
